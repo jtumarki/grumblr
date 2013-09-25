@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="../../assets/ico/favicon.png">
+    <link href='http://fonts.googleapis.com/css?family=Syncopate' rel='stylesheet' type='text/css'>
+
+    <title>Grumblr Home Page</title>
+    
+    <!-- Bootstrap -->
+    <link href="/static/dist/css/bootstrap.min.css" rel="stylesheet" media="screen">
+
+    <!-- Custom styles for this template -->
+    <link href="/static/profile.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="../../assets/js/html5shiv.js"></script>
+      <script src="../../assets/js/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <div class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/grumblr">Grumblr</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="/grumblr">Home</a></li>
+            <li><a href="/following">Following</a></li>
+            <li class="active"><a href="/profile">Profile</a></li>
+            <li><a href="/logout">Logout</a></li>
+          </ul>
+          <form class="navbar-form navbar-right" role="search" action="/search" method="post">
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Search" name="searchtext">
+            </div>
+            <button type="submit" class="btn btn-default">Submit</button>
+            {% csrf_token %}
+          </form>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+
+    <div class="container">
+
+    {% for error in errors %}
+    <p style="color:red">
+    {{error}}
+    </p>
+    {% endfor %}
+
+      <div class="edit-template">
+        <h1>Edit Your Profile</h1>
+        <!--<p class="lead">Current Photo<br><img class="imagedropshadow" src="/media/profpic.jpg" alt="Me!"></p>-->
+        <p><button class="btn btn-lg btn-success">Upload New Photo</button></p>
+      </div>
+
+      <form class="form-edit" action="/submit-edit" method="post">
+        <h3>Name<input type="text" class="form-control" placeholder="{{info.name}}"
+        name="name" autofocus></h3>
+
+        <h3>Blurb<input type="text" class="form-control" placeholder="{{info.blurb}}"
+        name="blurb" autofocus></h3>
+
+        <h3>About Me<input type="text" class="form-control" placeholder="{{info.about_me}}"
+        name="about_me" autofocus></h3>
+
+        <h3>School<input type="text" class="form-control" placeholder="{{info.school}}"
+        name="school" autofocus></h3>
+
+        <h3>Contact Me At<input type="text" class="form-control" placeholder="{{info.contact}}"
+        name="contact" autofocus></h3>
+
+        <h3>Old Password<input type="password" class="form-control"
+        name="password1"></h3>
+
+        <h3>New Password (if you wish to change it)<input type="password" class="form-control"
+        name="password2"></h3>
+
+        <p><button class="btn btn-lg btn-success" type="submit">Submit Changes</button></p>
+
+        {% csrf_token %}
+      </form>
+
+      <div class="footer">
+        <p>&copy; 15-437 2013</p>
+      </div>
+
+    </div> <!-- /container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="../../assets/js/jquery.js"></script>
+    <script src="../../dist/js/bootstrap.min.js"></script>
+  </body>
+</html>

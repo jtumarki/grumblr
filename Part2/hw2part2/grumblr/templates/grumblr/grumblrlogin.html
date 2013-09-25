@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="../../assets/ico/favicon.png">
+    <link href='http://fonts.googleapis.com/css?family=Syncopate' rel='stylesheet' type='text/css'>
+
+    <title>Grumblr Login</title>
+
+    <!-- Bootstrap -->
+    <link href="/static/dist/css/bootstrap.min.css" rel="stylesheet" media="screen">
+
+    <!-- Custom styles for this template -->
+    <link href="/static/signin.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="../../assets/js/html5shiv.js"></script>
+      <script src="../../assets/js/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    {% if form.errors %}
+    <p style="color:red">
+    Incorrect user name and password.
+    </p>
+    {% endif %}
+
+    <div class="container">
+
+      <form class="form-signin" method="post" action="{% url 'django.contrib.auth.views.login' %}">
+        <h2 class="form-signin-heading">GRUMBLR</h2>
+        <input type="text" class="form-control" placeholder="Username"
+        name="username" id="username" autofocus>
+        <input type="password" class="form-control" placeholder="Password"
+        name="password" id="password">
+        <label class="checkbox">
+          <input type="checkbox" value="remember-me"> Remember me
+        </label>
+        <button class="btn btn-lg btn-primary btn-block" type="submit"
+        name="login">Log in</button>
+        <a class="btn" href="/register">New user? Click here to register</a>
+
+        <input type="hidden" name="next" value="{{ next }}" />
+        {% csrf_token %}
+
+      </form>
+
+    </div> <!-- /container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+  </body>
+</html>
